@@ -1,0 +1,9 @@
+CRIAR APP (WEB MOBILE)
+- TELA AUTENTICAÇÃO (KEY)
+    - Campo de entrada de chave
+    - Botão para autenticar
+
+- TELA INICIAL CHAT 
+  - Lista de mensagens
+  - Campo de entrada de texto
+  - Botão para enviar mensagem
