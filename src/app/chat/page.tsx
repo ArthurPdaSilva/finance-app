@@ -24,7 +24,6 @@ export default function Chat() {
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const form = e.currentTarget;
     const input = form.chatInput as HTMLInputElement;
 
@@ -37,21 +36,22 @@ export default function Chat() {
     ];
 
     setMessages((prev) => [...fakeInteration, ...prev]);
-
     input.value = "";
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-8">
-      <h1 className="text-4xl font-bold text-center">Chat Financeiro</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-8 bg-[#0A0F0D] px-4 py-6">
+      <h1 className="text-3xl md:text-4xl font-bold text-center text-[#D4AF37]">
+        Chat Financeiro
+      </h1>
 
-      <div className="w-full flex flex-col gap-4 p-4">
+      <div className="w-full max-w-md flex flex-col gap-4 p-2">
         <div
           ref={messagesRef}
-          className="flex h-[80vh] overflow-y-auto flex-col-reverse gap-4 p-4 rounded-lg"
+          className="flex h-[75vh] overflow-y-auto flex-col-reverse gap-3 p-3 rounded-lg bg-[#111715] border border-[#1F2A25]"
         >
           {messages.length === 0 && (
-            <p className="text-2xl text-gray-400 text-center  mt-4">
+            <p className="text-xl text-gray-500 text-center mt-4">
               Como posso te ajudar hoje?
             </p>
           )}
@@ -65,10 +65,10 @@ export default function Chat() {
               }`}
             >
               <p
-                className={`rounded-lg p-2 ${
+                className={`rounded-lg p-2 text-sm md:text-base ${
                   msg.sender === "user"
-                    ? "bg-gray-100 text-gray-800"
-                    : "bg-blue-100 text-blue-800"
+                    ? "bg-[#1A2E25] text-[#C8F3D4] border border-[#285C4A]"
+                    : "bg-[#153E2A] text-[#E1FFE8] border border-[#1C5C3D]"
                 }`}
               >
                 {msg.text}
@@ -83,11 +83,11 @@ export default function Chat() {
             type="text"
             name="chatInput"
             placeholder="Digite sua mensagem"
-            className="flex-1 border border-gray-300 rounded-l-md p-2"
+            className="flex-1 border outline-0 border-[#2A3C36] bg-[#0E1412] text-white rounded-l-md p-2 placeholder-gray-400"
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white rounded-r-md p-2 hover:bg-blue-600 transition-colors duration-300 cursor-pointer -ml-2.5"
+            className="bg-[#1F6F4A] text-white rounded-r-md px-4 py-2 hover:bg-[#27965F] transition-colors duration-300 cursor-pointer -ml-2.5"
           >
             Enviar
           </button>
