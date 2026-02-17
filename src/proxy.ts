@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function proxy(request: NextRequest) {
-  console.log("Proxy middleware triggered for:", request.url);
   const isPublicPage = request.nextUrl.pathname === "/";
   const isPrivatePage = request.nextUrl.pathname.startsWith("/chat");
   const isGetRequest = request.method === "GET";

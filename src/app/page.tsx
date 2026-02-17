@@ -11,7 +11,6 @@ export default function Home() {
       return;
     }
 
-    // setar em um cookie de 1h
     (await cookies()).set("api-key", apiKey, {
       maxAge: 60 * 60, // 1 hora
       httpOnly: true,

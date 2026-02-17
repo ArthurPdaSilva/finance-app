@@ -31,7 +31,6 @@ export default function Chat() {
     const value = input.value.trim();
     if (!value) return;
 
-    // adiciona a mensagem nova
     const fakeInteration: Message[] = [
       { sender: "bot", text: "Entendi sua mensagem." },
       { sender: "user", text: value },
