@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Finance App",
-  description: "A simple finance app built with Next.js and TypeScript.",
+  title: {
+    default: "Finance App - Acesso",
+    template: "Finance App - %s",
+  },
+  description:
+    "Uma aplicação de chat financeiro construída com Next.js e TypeScript.",
 };
 
 export default function RootLayout({
