@@ -27,7 +27,7 @@ export async function accessAction(_: AccessActionState, formData: FormData) {
     };
   }
 
-  if (apiKey !== process.env.NEXT_PUBLIC_API_KEY) {
+  if (apiKey !== process.env.API_KEY) {
     return {
       apiKey,
       error: "Chave de acesso inválida",

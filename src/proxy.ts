@@ -13,7 +13,7 @@ export async function proxy(request: NextRequest) {
   const shouldBeUnauthenticated = isPublicPage && !isPrivatePage;
 
   const apiKey = request.cookies.get("api-key")?.value;
-  const isAuthenticated = apiKey === process.env.NEXT_PUBLIC_API_KEY;
+  const isAuthenticated = apiKey === process.env.API_KEY;
 
   if (shouldBeAuthenticated && !isAuthenticated) {
     const publicUrl = new URL("/", request.url);
