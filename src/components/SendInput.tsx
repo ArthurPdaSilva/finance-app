@@ -1,82 +1,58 @@
+/** biome-ignore-all lint/correctness/useExhaustiveDependencies: false positive */
 "use client";
 
+import { chatAction } from "@/actions/chat-action";
 import { useMessage } from "@/MessageContext";
-import type { BotResponse, Message, SendMessage } from "@/types";
-import { useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 
-type SendInputProps = {
-  apiKey: string;
-};
+export const SendInput = () => {
+  const { setMessages } = useMessage();
+  const [inputValue, setInputValue] = useState("");
 
-export const SendInput = ({ apiKey }: SendInputProps) => {
-  const { setMessages, startTransition, isPending } = useMessage();
-
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const input = form.chatInput as HTMLInputElement;
-
-    const value = input.value.trim();
-    if (!value) return;
-
-    const sendMessage: SendMessage = {
-      key: apiKey,
-      question: value,
-    };
-
-    const interaction: Message[] = [
-      { sender: "waiting", text: "O Finance Bot está pensando..." },
-      { sender: "user", text: value },
-    ];
-
-    setMessages((prev) => [...interaction, ...prev]);
-
-    startTransition(async () => {
-      const response = await fetch(
-        "https://finance-ai-6ikr.onrender.com/finance-ai",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(sendMessage),
-        },
-      );
-
-      const data = (await response.json()) as BotResponse;
-      const interaction: Message[] = [{ sender: "bot", text: data.message }];
-
-      setMessages((prev) => [...interaction, ...prev]);
-    });
-
-    input.value = "";
-    input.focus();
+  const initialState = {
+    chatInput: "",
+    botResponse: "",
   };
+  const [state, action, isPending] = useActionState(chatAction, initialState);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: false positive
   useEffect(() => {
-    if (!isPending) {
-      // Quero remover a mensagem de "O Finance Bot está pensando..." quando a resposta chegar
-      setMessages((prev) => prev.filter((msg) => msg.sender !== "waiting"));
+    if (isPending) {
+      setMessages((prev) => [
+        { sender: "waiting", text: "O Finance Bot está pensando..." },
+        { sender: "user", text: inputValue },
+        ...prev.filter((m) => m.sender !== "waiting"),
+      ]);
     }
-  }, [isPending]);
+
+    if (!isPending && state.botResponse) {
+      setInputValue("");
+      setMessages((prev) => [
+        { sender: "bot", text: state.botResponse },
+        ...prev.filter((m) => m.sender !== "waiting"),
+      ]);
+    }
+  }, [isPending, state.botResponse]);
 
   return (
-    <form className="flex gap-2" onSubmit={handleSubmit}>
+    <form action={action} className="flex gap-2">
       <input
+        value={inputValue}
         disabled={isPending}
+        onChange={(e) => setInputValue(e.target.value)}
+        defaultValue={state.chatInput}
         type="text"
-        name="chatInput"
-        placeholder="Digite sua mensagem"
-        className="flex-1 outline-0 border border-[#2A4A7A] bg-[#0F1A2A]/60 text-white rounded-l-md p-2
-      placeholder-gray-300 focus:border-[#12A2CA] outline-none transition"
+        name="chat-input"
+        placeholder={"Digite sua pergunta..."}
+        className={`flex-1 border border-[#2A4A7A] bg-[#0F1A2A]/60 ${isPending ? "text-gray-500" : "text-white"} ${inputValue.trim()} rounded-l-md p-2 
+                   placeholder-gray-300 focus:border-[#12A2CA] outline-none transition`}
       />
       <button
         type="submit"
-        className="bg-[#167EAC] hover:bg-[#199BC7] text-white rounded-r-md px-4 py-2 transition-colors duration-300 cursor-pointer -ml-2.5 font-medium"
-        disabled={isPending}
+        disabled={isPending || !inputValue.trim()}
+        className="bg-[#167EAC] hover:bg-[#199BC7] text-white rounded-r-md px-4 -ml-2.5 py-2 
+                   transition-colors duration-300 cursor-pointer font-medium disabled:opacity-50"
       >
-        {isPending ? "Enviando..." : "Enviar"}
+        {isPending ? "..." : "Enviar"}
       </button>
     </form>
   );
