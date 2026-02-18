@@ -23,13 +23,17 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-[#0A0F0D]">
-      <h1 className="text-3xl md:text-4xl font-bold text-center text-[#D4AF37] mb-6">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center px-4
+      bg-[radial-gradient(circle_at_center,#12A2CA,#199BC7,#5A63AB)]"
+    >
+      <h1 className="text-3xl md:text-4xl font-bold text-center text-white mb-6">
         Bem-vindo ao Finance App
       </h1>
 
       <form
-        className="flex flex-col gap-3 w-full max-w-sm text-center bg-[#111715] p-6 rounded-lg border border-[#1F2A25]"
+        className="flex flex-col gap-3 w-full max-w-sm text-center p-6 rounded-xl
+  bg-[#0F1A2A]/90 border border-[#24385B] shadow-lg backdrop-blur-sm"
         action={handleForm}
       >
         <input
@@ -37,12 +41,14 @@ export default function Home() {
           id="api-key"
           name="api-key"
           placeholder="Digite a chave de acesso"
-          className="border border-[#2A3C36] bg-[#0E1412] text-white rounded-md p-2 placeholder-gray-400"
+          className="border border-[#2A4A7A] bg-[#0F1A2A]/60 text-white rounded-md p-2
+      placeholder-gray-300 focus:border-[#12A2CA] outline-none transition"
         />
 
         <button
           type="submit"
-          className="bg-[#1F6F4A] text-white rounded-md p-2 hover:bg-[#27965F] transition-colors duration-300 cursor-pointer"
+          className="bg-[#167EAC] hover:bg-[#199BC7] text-white rounded-md p-2
+    transition-colors duration-300 cursor-pointer font-medium"
         >
           Acessar
         </button>

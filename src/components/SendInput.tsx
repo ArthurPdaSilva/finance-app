@@ -15,7 +15,7 @@ export const SendInput = () => {
     if (!value) return;
 
     const fakeInteration: Message[] = [
-      { sender: "bot", text: "Entendi sua mensagem." },
+      { sender: "bot", text: "Sim, eu sou um bot! Como posso" },
       { sender: "user", text: value },
     ];
 
@@ -29,11 +29,12 @@ export const SendInput = () => {
         type="text"
         name="chatInput"
         placeholder="Digite sua mensagem"
-        className="flex-1 border outline-0 border-[#2A3C36] bg-[#0E1412] text-white rounded-l-md p-2 placeholder-gray-400"
+        className="flex-1 outline-0 border border-[#2A4A7A] bg-[#0F1A2A]/60 text-white rounded-l-md p-2
+      placeholder-gray-300 focus:border-[#12A2CA] outline-none transition"
       />
       <button
         type="submit"
-        className="bg-[#1F6F4A] text-white rounded-r-md px-4 py-2 hover:bg-[#27965F] transition-colors duration-300 cursor-pointer -ml-2.5"
+        className="bg-[#167EAC] hover:bg-[#199BC7] text-white rounded-r-md px-4 py-2 transition-colors duration-300 cursor-pointer -ml-2.5"
       >
         Enviar
       </button>

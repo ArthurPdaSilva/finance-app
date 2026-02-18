@@ -20,12 +20,22 @@ export const Messages = () => {
   return (
     <div
       ref={messagesRef}
-      className="flex h-[75vh] overflow-y-auto flex-col-reverse gap-3 p-3 rounded-lg bg-[#111715] border border-[#1F2A25]"
+      className={`flex h-[75vh] overflow-y-auto p-3 rounded-lg bg-[#0F1A2A]/90 
+  border border-[#24385B] shadow-lg backdrop-blur-sm flex-col-reverse gap-3`}
     >
       {messages.length === 0 && (
-        <p className="text-xl text-gray-500 text-center mt-4">
-          Como posso te ajudar hoje?
-        </p>
+        <div className={"flex gap-2 self-start"}>
+          <p
+            className={
+              "rounded-lg p-2 text-sm md:text-base text-white self-start font-bold"
+            }
+          >
+            Olá! Eu sou o Finance Bot, seu assistente financeiro virtual. Estou
+            aqui para ajudar a responder suas dúvidas sobre finanças,
+            investimentos e muito mais. Sinta-se à vontade para me perguntar
+            qualquer coisa relacionada ao mundo financeiro!
+          </p>
+        </div>
       )}
 
       {messages.map((msg, i) => (
@@ -39,8 +49,8 @@ export const Messages = () => {
           <p
             className={`rounded-lg p-2 text-sm md:text-base ${
               msg.sender === "user"
-                ? "bg-[#1A2E25] text-[#C8F3D4] border border-[#285C4A]"
-                : "bg-[#153E2A] text-[#E1FFE8] border border-[#1C5C3D]"
+                ? "bg-[#167EAC] text-white self-end"
+                : "text-white self-start  font-bold"
             }`}
           >
             {msg.text}
