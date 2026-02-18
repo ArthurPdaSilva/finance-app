@@ -27,7 +27,7 @@ export const Messages = () => {
         <div className={"flex gap-2 self-start"}>
           <p
             className={
-              "rounded-lg p-2 text-sm md:text-base text-white self-start font-bold"
+              "rounded-lg p-2 text-sm md:text-base text-white self-start font-medium"
             }
           >
             Olá! Eu sou o Finance Bot, seu assistente financeiro virtual. Estou
@@ -47,10 +47,10 @@ export const Messages = () => {
           }`}
         >
           <p
-            className={`rounded-lg p-2 text-sm md:text-base ${
+            className={`rounded-lg p-2 text-sm md:text-base font-medium ${
               msg.sender === "user"
                 ? "bg-[#167EAC] text-white self-end"
-                : "text-white self-start  font-bold"
+                : "text-white self-start"
             }`}
           >
             {msg.text}

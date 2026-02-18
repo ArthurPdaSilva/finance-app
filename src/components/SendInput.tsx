@@ -34,7 +34,7 @@ export const SendInput = () => {
       />
       <button
         type="submit"
-        className="bg-[#167EAC] hover:bg-[#199BC7] text-white rounded-r-md px-4 py-2 transition-colors duration-300 cursor-pointer -ml-2.5"
+        className="bg-[#167EAC] hover:bg-[#199BC7] text-white rounded-r-md px-4 py-2 transition-colors duration-300 cursor-pointer -ml-2.5 font-medium"
       >
         Enviar
       </button>
