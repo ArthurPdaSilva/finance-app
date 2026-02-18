@@ -3,7 +3,7 @@ import { useMessage } from "@/MessageContext";
 import { useEffect, useRef } from "react";
 
 export const Messages = () => {
-  const { messages, isPending } = useMessage();
+  const { messages } = useMessage();
   const messagesRef = useRef<HTMLDivElement>(null);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: false positive
@@ -37,20 +37,6 @@ export const Messages = () => {
           </p>
         </div>
       )}
-
-      {/* {isPending && (
-        <div className="flex gap-2 self-start justify-center items-center">
-          <div className="w-6 h-6 border-4 border-[#167EAC] border-t-transparent rounded-full animate-spin"></div>
-          <p
-            className={
-              "rounded-lg p-2 text-sm md:text-base text-[#167EAC] self-start font-medium"
-            }
-          >
-            O Finance Bot está pensando...
-          </p>
-        </div>
-      )} */}
-
       {messages.map((msg, i) => (
         <div
           // biome-ignore lint/suspicious/noArrayIndexKey: false positive
