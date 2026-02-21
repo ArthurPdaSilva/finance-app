@@ -3,11 +3,12 @@
 
 import { chatAction } from "@/actions/chat-action";
 import { useMessage } from "@/MessageContext";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 
 export const SendInput = () => {
   const { setMessages } = useMessage();
   const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const initialState = {
     chatInput: "",
@@ -34,25 +35,72 @@ export const SendInput = () => {
   }, [isPending, state.botResponse]);
 
   return (
-    <form action={action} className="flex gap-2">
-      <input
-        value={inputValue}
-        disabled={isPending}
-        onChange={(e) => setInputValue(e.target.value)}
-        defaultValue={state.chatInput}
-        type="text"
+    <form
+      action={action}
+      id="form"
+      onClick={() => inputRef.current?.focus()}
+      onKeyDown={() => inputRef.current?.focus()}
+      className="flex items-end gap-4 rounded-xl border-[#2A4A7A] bg-[#0F1A2A]/60 px-5 py-4"
+    >
+      <textarea
+        ref={inputRef}
+        id="input"
         name="chat-input"
-        placeholder={"Digite sua pergunta..."}
-        className={`flex-1 border border-[#2A4A7A] bg-[#0F1A2A]/60 ${isPending ? "text-gray-500" : "text-white"} ${inputValue.trim()} rounded-l-md p-2 
-                   placeholder-gray-300 focus:border-[#12A2CA] outline-none transition`}
-      />
+        defaultValue={state.chatInput}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        disabled={isPending}
+        rows={1}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            (
+              document.getElementById("form") as HTMLFormElement
+            )?.requestSubmit();
+          }
+        }}
+        placeholder="Digite sua pergunta.."
+        className={`flex-1 resize-none bg-transparent outline-none text-base leading-relaxed placeholder-white/40 text-white ${isPending && "opacity-50 cursor-not-allowed"} p-1`}
+      ></textarea>
       <button
-        type="submit"
         disabled={isPending || !inputValue.trim()}
-        className="bg-[#167EAC] hover:bg-[#199BC7] text-white rounded-r-md px-4 -ml-2.5 py-2 
-                   transition-colors duration-300 cursor-pointer font-medium disabled:opacity-50"
+        type="submit"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-[#167EAC] hover:bg-[#199BC7] text-white text-sm font-medium cursor-pointer"
       >
-        {isPending ? "..." : "Enviar"}
+        {isPending ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+          >
+            <title>Carregando...</title>
+            <rect x="4" y="4" width="12" height="12" rx="3"></rect>
+          </svg>
+        ) : (
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Enviar mensagem</title>
+            <path
+              d="M10 4L10 16"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M6 8L10 4L14 8"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        )}
       </button>
     </form>
   );

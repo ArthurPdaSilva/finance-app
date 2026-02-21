@@ -20,14 +20,14 @@ export const Messages = () => {
   return (
     <div
       ref={messagesRef}
-      className={`flex h-[75vh] overflow-y-auto p-3 rounded-lg bg-[#0F1A2A]/90 
+      className={`flex h-[75vh] overflow-y-auto p-3 rounded-xl bg-[#0F1A2A]/90 
   border border-[#24385B] shadow-lg backdrop-blur-sm flex-col-reverse gap-3`}
     >
       {messages.length === 0 && (
         <div className={"flex gap-2 self-start"}>
           <p
             className={
-              "rounded-lg p-2 text-sm md:text-base text-white self-start font-medium text-justify"
+              "rounded-xl p-2 text-sm md:text-base text-white self-start font-medium text-justify"
             }
           >
             Olá! Eu sou o Finance Bot, seu assistente financeiro virtual. Estou
@@ -50,7 +50,7 @@ export const Messages = () => {
               <div className="w-6 h-6 border-4 border-[#167EAC] border-t-transparent rounded-full animate-spin"></div>
               <p
                 className={
-                  "rounded-lg p-2 text-sm md:text-base text-[#167EAC] self-start font-medium"
+                  "p-2 text-sm md:text-base text-[#167EAC] self-start font-medium"
                 }
               >
                 {msg.text}
@@ -60,7 +60,7 @@ export const Messages = () => {
 
           {msg.sender !== "waiting" && (
             <p
-              className={`rounded-lg p-2 text-sm md:text-base font-medium text-justify ${
+              className={`rounded-xl p-2 text-sm md:text-base font-medium text-justify ${
                 msg.sender === "user"
                   ? "bg-[#167EAC] text-white self-end"
                   : "text-white self-start"
