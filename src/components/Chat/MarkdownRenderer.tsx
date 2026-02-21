@@ -9,7 +9,8 @@ type MarkdownRendererProps = {
 
 export function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
   return (
-    <div className="prose prose-invert w-full max-w-none overflow-hidden lg:prose-lg prose-th:text-white prose-td:text-slate-200">
+    // Removido 'prose-invert' e ajustado cores para o tema claro
+    <div className="prose prose-slate w-full max-w-none overflow-hidden lg:prose-lg prose-th:text-[#167EAC] prose-td:text-gray-700">
       <ReactMarkdown
         rehypePlugins={[rehypeSanitize]}
         remarkPlugins={[remarkGfm]}
@@ -24,7 +25,8 @@ export function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
             />
           ),
           table: ({ node, ...props }) => (
-            <div className="my-4 w-full overflow-x-auto rounded-lg border border-white/20 bg-white/5">
+            // Fundo branco sólido ou levemente cinza para destacar do balão
+            <div className="my-4 w-full overflow-x-auto rounded-lg border border-gray-200 bg-gray-50/50">
               <table
                 className="w-full border-collapse text-left text-sm"
                 {...props}
@@ -33,30 +35,35 @@ export function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
           ),
           thead: ({ node, ...props }) => (
             <thead
-              className="bg-white/10 text-white uppercase font-bold"
+              className="bg-gray-100 uppercase font-bold text-[10px] tracking-wider"
               {...props}
             />
           ),
           tbody: ({ node, ...props }) => (
-            <tbody className="divide-y divide-white/10" {...props} />
+            <tbody className="divide-y divide-gray-200" {...props} />
           ),
           tr: ({ node, ...props }) => (
-            <tr className="hover:bg-white/5 transition-colors" {...props} />
+            <tr className="hover:bg-white transition-colors" {...props} />
           ),
           th: ({ node, ...props }) => (
-            <th className="px-4 py-3 border-b border-white/20" {...props} />
+            <th
+              className="px-4 py-3 border-b border-gray-200 text-base"
+              {...props}
+            />
           ),
           td: ({ node, ...props }) => <td className="px-4 py-3" {...props} />,
           p: ({ node, ...props }) => (
-            <p className="mb-4 leading-relaxed" {...props} />
+            <p className="mb-4 last:mb-0 leading-relaxed" {...props} />
           ),
           h2: ({ node, ...props }) => (
-            <h2 className="text-3xl font-bold mb-4" {...props} />
+            <h2 className="text-2xl font-bold mb-4 text-gray-800" {...props} />
           ),
           h3: ({ node, ...props }) => (
-            <h3 className="text-2xl font-bold mb-4" {...props} />
+            <h3 className="text-xl font-bold mb-4 text-gray-800" {...props} />
           ),
-          hr: ({ node, ...props }) => <hr className="mb-4" {...props} />,
+          hr: ({ node, ...props }) => (
+            <hr className="my-4 border-gray-200" {...props} />
+          ),
         }}
       >
         {markdown}

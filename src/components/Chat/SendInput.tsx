@@ -40,7 +40,7 @@ export const SendInput = () => {
       id="form"
       onClick={() => inputRef.current?.focus()}
       onKeyDown={() => inputRef.current?.focus()}
-      className="flex items-end gap-4 rounded-xl border-[#2A4A7A] bg-[#0F1A2A]/60 px-5 py-4"
+      className=" w-[80vw] md:w-[40vw]  flex items-end gap-4 m-auto rounded-xl border-[#2A4A7A] bg-[#0F1A2A]/40 px-5 py-4"
     >
       <textarea
         ref={inputRef}
@@ -65,7 +65,7 @@ export const SendInput = () => {
       <button
         disabled={isPending || !inputValue.trim()}
         type="submit"
-        className={`flex items-center justify-center w-10 h-10 rounded-full bg-[#167EAC] hover:bg-[#199BC7] text-white text-sm font-medium ${isPending || !inputValue.trim() ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
+        className={`flex items-center justify-center w-10 h-10 rounded-full bg-[linear-gradient(90deg,#12A2CA,#199BC7,#5A63AB)] text-white text-sm font-medium ${isPending || !inputValue.trim() ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
       >
         {isPending ? (
           <svg
