@@ -65,7 +65,7 @@ export const SendInput = () => {
       <button
         disabled={isPending || !inputValue.trim()}
         type="submit"
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-[#167EAC] hover:bg-[#199BC7] text-white text-sm font-medium cursor-pointer"
+        className={`flex items-center justify-center w-10 h-10 rounded-full bg-[#167EAC] hover:bg-[#199BC7] text-white text-sm font-medium ${isPending || !inputValue.trim() ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
       >
         {isPending ? (
           <svg

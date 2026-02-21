@@ -56,6 +56,7 @@ export function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
           h3: ({ node, ...props }) => (
             <h3 className="text-2xl font-bold mb-4" {...props} />
           ),
+          hr: ({ node, ...props }) => <hr className="mb-4" {...props} />,
         }}
       >
         {markdown}
