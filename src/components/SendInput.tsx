@@ -89,15 +89,15 @@ export const SendInput = () => {
             <path
               d="M10 4L10 16"
               stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
             />
             <path
               d="M6 8L10 4L14 8"
               stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         )}

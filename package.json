@@ -13,7 +13,10 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-toastify": "^11.0.5"
+    "react-markdown": "^10.1.0",
+    "react-toastify": "^11.0.5",
+    "rehype-sanitize": "^6.0.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",

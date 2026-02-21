@@ -1,6 +1,7 @@
 "use client";
 import { useMessage } from "@/MessageContext";
 import { useEffect, useRef } from "react";
+import { MarkdownRenderer } from "./MarkdownRenderer";
 
 export const Messages = () => {
   const { messages } = useMessage();
@@ -59,15 +60,15 @@ export const Messages = () => {
           )}
 
           {msg.sender !== "waiting" && (
-            <p
+            <div
               className={`rounded-xl p-2 text-sm md:text-base font-medium text-justify ${
                 msg.sender === "user"
                   ? "bg-[#167EAC] text-white self-end"
                   : "text-white self-start"
               }`}
             >
-              {msg.text}
-            </p>
+              <MarkdownRenderer markdown={msg.text} />
+            </div>
           )}
         </div>
       ))}

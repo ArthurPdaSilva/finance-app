@@ -1,7 +1,7 @@
 "use client";
 import { accessAction } from "@/actions/access-action";
 import { useActionState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { CustomAlert } from "./CustomAlert";
 
 export const AccessForm = () => {
   const initialState = {
@@ -12,8 +12,8 @@ export const AccessForm = () => {
 
   useEffect(() => {
     if (state.error) {
-      toast.dismiss();
-      toast.error(state.error);
+      CustomAlert.dismiss();
+      CustomAlert.error(state.error);
     }
   }, [state]);
 
