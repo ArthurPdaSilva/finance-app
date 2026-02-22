@@ -1,6 +1,6 @@
 import { AccessForm } from "@/components/AccessForm";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4

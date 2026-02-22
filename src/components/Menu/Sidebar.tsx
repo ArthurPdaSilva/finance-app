@@ -1,9 +1,13 @@
 /** biome-ignore-all lint/performance/noImgElement: false positive */
 import { useMenu } from "@/MenuContext";
-import { fakeChats } from "@/utils/fake-chat";
+import Link from "next/link";
 import { LogoutButton } from "./LogoutButton";
 
-export const Sidebar = () => {
+type SidebarProps = {
+  children: React.ReactNode;
+};
+
+export const Sidebar = async ({ children }: SidebarProps) => {
   const { isOpen, toggleMenu } = useMenu();
 
   return (
@@ -67,7 +71,8 @@ export const Sidebar = () => {
           <span className="text-sm font-medium">AI Chat</span>
         </button>
 
-        <button
+        <Link
+          href="/chat"
           type="button"
           className="w-full cursor-pointer flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors"
         >
@@ -84,25 +89,14 @@ export const Sidebar = () => {
             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
           </svg>
           <span className="text-sm font-medium">Novo chat</span>
-        </button>
+        </Link>
 
         <div className="pt-4 mt-4 border-t border-gray-100">
           <span className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
             Chats
           </span>
-          <div className="flex flex-col">
-            {fakeChats.map(({ id, title }) => {
-              return (
-                <button
-                  key={id}
-                  type="button"
-                  className="w-full cursor-pointer px-3 h-14 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors text-sm font-medium text-ellipsis truncate text-left"
-                >
-                  {title}
-                </button>
-              );
-            })}
-          </div>
+
+          {children}
         </div>
 
         <div className="pt-4 mt-4 border-t border-gray-100">

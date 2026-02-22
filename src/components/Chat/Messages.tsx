@@ -2,13 +2,31 @@
 /** biome-ignore-all lint/correctness/useExhaustiveDependencies: false positive */
 "use client";
 import { useMessage } from "@/MessageContext";
+import type { Message, MessageHistory } from "@/types";
 import { useEffect, useRef } from "react";
 import { InteractionMessage } from "./InteractionMessage";
 import { WaitingMessage } from "./WaitingMessage";
 
-export const Messages = () => {
-  const { messages } = useMessage();
+type MessagesProps = {
+  history?: MessageHistory[];
+};
+
+export const Messages = ({ history = [] }: MessagesProps) => {
+  const { messages, setMessages } = useMessage();
   const messagesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (history.length > 0) {
+      const messages: Message[] = history.map((message) => {
+        return {
+          text: message.content,
+          sender: message.role,
+        };
+      });
+
+      setMessages(messages);
+    }
+  }, [history]);
 
   useEffect(() => {
     const div = messagesRef.current;

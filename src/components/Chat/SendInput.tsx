@@ -3,18 +3,30 @@
 
 import { chatAction } from "@/actions/chat-action";
 import { useMessage } from "@/MessageContext";
+import { usePathname, useRouter } from "next/navigation";
 import { useActionState, useEffect, useRef, useState } from "react";
 
 export const SendInput = () => {
   const { messages, setMessages } = useMessage();
   const [inputValue, setInputValue] = useState("");
+  const pathname = usePathname();
+  const router = useRouter();
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [, base, id] = pathname.split("/");
 
   const initialState = {
     chatInput: "",
     botResponse: "",
+    chat_id: base === "chat" && id ? Number(id) : undefined,
   };
   const [state, action, isPending] = useActionState(chatAction, initialState);
+
+  useEffect(() => {
+    if (state.chat_id && pathname === "/chat" && !id) {
+      const newUrl = `${pathname}/${state.chat_id}`;
+      router.replace(newUrl);
+    }
+  }, [state.chat_id, pathname]);
 
   useEffect(() => {
     if (isPending) {
@@ -28,7 +40,7 @@ export const SendInput = () => {
     if (!isPending && state.botResponse) {
       setInputValue("");
       setMessages((prev) => [
-        { sender: "bot", text: state.botResponse },
+        { sender: "assistant", text: state.botResponse },
         ...prev.filter((m) => m.sender !== "waiting"),
       ]);
     }

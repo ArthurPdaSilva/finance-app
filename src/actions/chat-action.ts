@@ -1,15 +1,17 @@
 "use server";
 
 import type { BotResponse, Message, SendMessage } from "@/types";
+import { updateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 type ChatActionState = {
   chatInput: string;
+  chat_id?: number;
   botResponse: string;
 };
 
 export async function chatAction(
-  _: ChatActionState,
+  state: ChatActionState,
   formData: FormData,
 ): Promise<ChatActionState> {
   const input = formData.get("chat-input");
@@ -30,6 +32,7 @@ export async function chatAction(
     question,
     key: apiKey,
     chat_history: chatHistoryStrings,
+    ...(state.chat_id ? { chat_id: state.chat_id } : {}),
   };
 
   try {
@@ -40,6 +43,8 @@ export async function chatAction(
       body: JSON.stringify(sendMessage),
     });
 
+    console.log(response);
+
     if (!response.ok) {
       return {
         chatInput: "",
@@ -49,9 +54,12 @@ export async function chatAction(
 
     const data = (await response.json()) as BotResponse;
 
+    updateTag("chats");
+
     return {
       chatInput: question,
       botResponse: data.message,
+      chat_id: data.chat_id,
     };
   } catch (error) {
     console.error("Erro na requisição:", error);
