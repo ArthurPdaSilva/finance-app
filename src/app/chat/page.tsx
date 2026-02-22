@@ -1,7 +1,7 @@
 import { ChatContainer } from "@/components/Chat/ChatContainer";
 import { Messages } from "@/components/Chat/Messages";
 import { SendInput } from "@/components/Chat/SendInput";
-import { Sidebar } from "@/components/Sidebar";
+import { Menu } from "@/components/Menu";
 import { MessagesProvider } from "@/MessageContext";
 import type { Metadata } from "next";
 
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export default async function Chat() {
   return (
-    <div className="h-full flex">
-      <Sidebar />
+    <div className="h-full flex flex-col md:flex-row">
+      <Menu />
       <ChatContainer>
         <MessagesProvider>
           <Messages />

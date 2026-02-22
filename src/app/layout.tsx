@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt">
-      <body>
+      <body className="h-full">
         {children}
         <CustomAlertProvider />
       </body>
