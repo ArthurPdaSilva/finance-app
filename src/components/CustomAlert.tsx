@@ -8,7 +8,8 @@ export const CustomAlert = {
 
   error: (msg: string) => toast.error(msg),
 
-  info: (msg: string) => toast.info(msg),
+  info: (msg: string, duration?: number | false) =>
+    toast.info(msg, { autoClose: duration }),
 
   warning: (msg: string) => toast.warning(msg),
 

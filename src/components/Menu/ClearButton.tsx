@@ -1,5 +1,6 @@
 "use client";
 import { clearAction } from "@/actions/clear-action";
+import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { CustomAlert } from "../CustomAlert";
 
@@ -9,10 +10,11 @@ export const ClearButton = () => {
     success: "",
   };
   const [state, action, isPending] = useActionState(clearAction, initialState);
+  const router = useRouter();
 
   useEffect(() => {
     if (isPending) {
-      CustomAlert.info("Limpando banco...");
+      CustomAlert.info("Limpando banco...", false);
       return;
     }
 
@@ -24,9 +26,10 @@ export const ClearButton = () => {
 
     if (state.success) {
       CustomAlert.success(state.success);
+      router.push("/chat");
       return;
     }
-  }, [state, isPending]);
+  }, [state, isPending, router.push]);
 
   return (
     <form action={action}>

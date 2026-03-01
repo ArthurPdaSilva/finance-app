@@ -2,7 +2,6 @@
 
 import { updateTag } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 type ClearActionState = {
   error: string;
@@ -47,13 +46,12 @@ export async function clearAction(
     updateTag("chat-messages");
     updateTag("chats");
 
-    redirect("/chat");
-
     return {
       error: "",
       success: "Banco de dados limpado com sucesso!",
     };
-  } catch {
+  } catch (e) {
+    console.log(e);
     return {
       error: "Erro ao limpar o banco de dados",
       success: "",
