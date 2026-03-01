@@ -2,7 +2,7 @@ import { ChatContainer } from "@/components/Chat/ChatContainer";
 import { Messages } from "@/components/Chat/Messages";
 import { SendInput } from "@/components/Chat/SendInput";
 import { Menu } from "@/components/Menu";
-import { MessagesProvider } from "@/MessageContext";
+import { MessagesProvider } from "@/contexts/MessageContext";
 import type { MessageHistory } from "@/types";
 
 type ChatLayoutProps = {

@@ -1,5 +1,5 @@
 "use client";
-import { MenuProvider } from "@/MenuContext";
+import { MenuProvider } from "@/contexts/MenuContext";
 import { MobileMenu } from "./MobileMenu";
 import { Overlay } from "./Overlay";
 import { Sidebar } from "./Sidebar";

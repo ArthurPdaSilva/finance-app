@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/a11y/useKeyWithClickEvents: false positive */
 /** biome-ignore-all lint/a11y/noStaticElementInteractions: false positive */
 
-import { useMenu } from "@/MenuContext";
+import { useMenu } from "@/contexts/MenuContext";
 
 export const Overlay = () => {
   const { isOpen, toggleMenu } = useMenu();

@@ -2,7 +2,7 @@
 "use client";
 
 import { chatAction } from "@/actions/chat-action";
-import { useMessage } from "@/MessageContext";
+import { useMessage } from "@/contexts/MessageContext";
 import { usePathname, useRouter } from "next/navigation";
 import { useActionState, useEffect, useRef, useState } from "react";
 
@@ -41,6 +41,7 @@ export const SendInput = () => {
       setInputValue("");
       setMessages((prev) => [
         { sender: "assistant", text: state.botResponse },
+        { sender: "user", text: inputValue },
         ...prev.filter((m) => m.sender !== "waiting"),
       ]);
     }

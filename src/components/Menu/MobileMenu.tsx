@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/performance/noImgElement: false positive */
 
-import { useMenu } from "@/MenuContext";
+import { useMenu } from "@/contexts/MenuContext";
 
 export const MobileMenu = () => {
   const { toggleMenu } = useMenu();

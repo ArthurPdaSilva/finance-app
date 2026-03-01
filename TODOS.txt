@@ -1,2 +1,0 @@
-Adicionar funcionalidade no botão de novo chat
-Adicionar histórico de chats

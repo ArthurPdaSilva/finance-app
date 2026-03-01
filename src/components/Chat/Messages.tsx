@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: false positive */
 /** biome-ignore-all lint/correctness/useExhaustiveDependencies: false positive */
 "use client";
-import { useMessage } from "@/MessageContext";
+import { useMessage } from "@/contexts/MessageContext";
 import type { Message, MessageHistory } from "@/types";
 import { useEffect, useRef } from "react";
 import { InteractionMessage } from "./InteractionMessage";
