@@ -33,7 +33,7 @@ export async function getMessages(chatId: string): Promise<MessageResponse> {
     {
       method: "GET",
       next: {
-        tags: [`chats-message-${chatId}`],
+        tags: ["chat-messages", `chats-message-${chatId}`],
         revalidate: Number(1800),
       },
     },

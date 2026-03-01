@@ -36,15 +36,6 @@ export const SendInput = () => {
         ...prev.filter((m) => m.sender !== "waiting"),
       ]);
     }
-
-    if (!isPending && state.botResponse) {
-      setInputValue("");
-      setMessages((prev) => [
-        { sender: "assistant", text: state.botResponse },
-        { sender: "user", text: inputValue },
-        ...prev.filter((m) => m.sender !== "waiting"),
-      ]);
-    }
   }, [isPending, state.botResponse]);
 
   return (

@@ -1,6 +1,7 @@
 /** biome-ignore-all lint/performance/noImgElement: false positive */
 import { useMenu } from "@/contexts/MenuContext";
 import Link from "next/link";
+import { ClearButton } from "./ClearButton";
 import { LogoutButton } from "./LogoutButton";
 
 type SidebarProps = {
@@ -103,6 +104,7 @@ export const Sidebar = ({ children }: SidebarProps) => {
           <span className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
             Configurações
           </span>
+          <ClearButton />
           <LogoutButton />
         </div>
       </nav>
